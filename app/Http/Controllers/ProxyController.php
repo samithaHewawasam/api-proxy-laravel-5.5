@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use GuzzleHttp\Client;
 
 class ProxyController extends Controller
@@ -19,11 +20,11 @@ class ProxyController extends Controller
 
       $client = new Client();
       $res = $client->request('GET', $this->proxy['register']['basic']['proxy_url'], [
-          'headers'  => ['Accept' => 'application/vnd.github.v3+json'],
+          'headers'  => ['Accept' => 'application/vnd.github.v3+json', 'Content-Type' => 'application/json'],
           'auth' => [$request->input('username'), $request->input('access_token')]
       ]);
 
-      echo $res->getBody();
+      return response()->json(['result' => json_decode($res->getBody())], $res->getStatusCode());
 
     }
 }
