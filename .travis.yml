@@ -2,3 +2,4 @@ language: php
 php:
   - 7.1.9
 before_script: composer update
+script: php artisan key:generate
