@@ -14,3 +14,4 @@ use Illuminate\Http\Request;
 */
 
 Route::get('/user', 'ProxyController@user');
+Route::post('/users', 'ProxyController@users');
